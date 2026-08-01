@@ -25,9 +25,11 @@ _conversation_memory: dict[int, list[dict]] = {}
 
 def _verify_signature(raw_body: bytes, signature: str | None) -> bool:
     if not settings.chatwoot_hmac_secret:
-        return True  # signature checking disabled until a secret is configured
+        return True
     if not signature:
         return False
+    if signature.startswith("sha256="):
+        signature = signature[len("sha256="):]
     expected = hmac.new(settings.chatwoot_hmac_secret.encode(), raw_body, hashlib.sha256).hexdigest()
     return hmac.compare_digest(expected, signature)
 

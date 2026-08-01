@@ -45,7 +45,7 @@ def _chunk_text(text: str, chunk_size: int = 800, overlap: int = 120) -> List[st
 
 
 def ingest_directory(directory: str) -> int:
-    """Ingest every .md/.txt file in `directory` into the vector store."""
+    #Ingest the md/txt policy files in directory into the vector store
     files = glob.glob(os.path.join(directory, "**/*.md"), recursive=True) + glob.glob(
         os.path.join(directory, "**/*.txt"), recursive=True
     )
@@ -65,7 +65,7 @@ def ingest_directory(directory: str) -> int:
 
 
 def retrieve(query: str, k: int | None = None) -> List[dict]:
-    """Return top-k relevant chunks for a query."""
+    # Return top-k relevant chunks for a query
     k = k or settings.top_k
     collection = _get_collection()
     if collection.count() == 0:
