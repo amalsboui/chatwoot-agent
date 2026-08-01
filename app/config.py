@@ -14,12 +14,15 @@ class Settings(BaseSettings):
     agent_model: str = "claude-sonnet-4-6"
     openai_compatible_base_url: str = "https://api.groq.com/openai/v1"
     openai_compatible_api_key: str = ""
-    openai_compatible_model: str = "llama-3.3-70b-versatile"
+    openai_compatible_model: str = "llama-3.1-8b-instant"
 
     # RAG
-    chroma_persist_dir: str = "/data/chroma"
+    chroma_persist_dir: str = "./data/chroma"
     embedding_model: str = "all-MiniLM-L6-v2"
     top_k: int = 4
+
+    # ChromaDB Settings
+    chroma_telemetry_disabled: bool = True 
 
     class Config:
         env_file = ".env"
