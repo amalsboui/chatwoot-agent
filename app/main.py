@@ -1,11 +1,3 @@
-"""FastAPI service exposing:
-  - POST /webhook/chatwoot   -> receives Chatwoot AgentBot events
-  - POST /chat               -> plain JSON endpoint for the standalone demo / testing
-
-Conversation memory is kept in-process per conversation_id (a dict).
-Good enough for a portfolio project; swap for Redis if this ever needs to
-survive restarts or run multi-instance.
-"""
 from __future__ import annotations
 
 import hashlib

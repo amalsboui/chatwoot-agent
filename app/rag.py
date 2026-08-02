@@ -1,7 +1,5 @@
 """RAG layer: chunking, embedding, vector storage and retrieval.
-
-Uses a local sentence-transformers model for embeddings (no extra API key
-needed) and Chroma as the vector store, persisted to disk so it survives
+Uses a local sentence-transformers model for embeddings and Chroma as the vector store, persisted to disk so it survives
 container restarts.
 """
 from __future__ import annotations

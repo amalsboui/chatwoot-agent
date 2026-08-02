@@ -1,6 +1,4 @@
-"""Three interchangeable LLM backends behind one interface, so the agent
-loop in agent.py doesn't care which one is running.
-"""
+"""Three interchangeable LLM backends behind one interface"""
 from __future__ import annotations
 
 import json
