@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>Widget test page</title></head>
+<body>
+  <h1>Widget test page</h1>
+  <p>The chat bubble should appear in the bottom corner.</p>
+
+  <script>
+    window.chatwootSettings = {
+      "position": "right",
+      "type": "standard",
+      "launcherTitle": "Chat with us"
+    };
+    (function(d,t) {
+      var BASE_URL="http://172.25.46.176:3000";
+      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=BASE_URL+"/packs/js/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g,s);
+      g.onload=function(){
+        window.chatwootSDK.run({
+          websiteToken: 'KP5CZqFKrXSHkSj83dQiCRcf',
+          baseUrl: BASE_URL
+        });
+      }
+    })(document,"script");
+  </script>
+</body>
+</html>

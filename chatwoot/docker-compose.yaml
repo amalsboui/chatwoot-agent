@@ -1,9 +1,7 @@
-version: '3'
-
 services:
   base: &base
-    image: chatwoot/chatwoot:latest
-    env_file: .env ## Change this file for customized env variables
+    image: chatwoot/chatwoot:v4.6.0-ce
+    env_file: .env 
     volumes:
       - storage_data:/app/storage
 
@@ -13,7 +11,7 @@ services:
       - postgres
       - redis
     ports:
-      - '127.0.0.1:3000:3000'
+      - '0.0.0.0:3000:3000'
     environment:
       - NODE_ENV=production
       - RAILS_ENV=production
@@ -41,10 +39,10 @@ services:
       - '127.0.0.1:5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    env_file: .env 
     environment:
       - POSTGRES_DB=chatwoot
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=
 
   redis:
     image: redis:alpine
@@ -55,8 +53,27 @@ services:
       - redis_data:/data
     ports:
       - '127.0.0.1:6379:6379'
+  ai-agent:
+    build:
+      context: /home/amalsboui/Projects/AI/ai-support-agent
+    restart: always
+    env_file: /home/amalsboui/Projects/AI/ai-support-agent/.env
+    volumes:
+      - ai_agent_data:/data
+    ports:
+      - "8000:8000"   
+    depends_on:
+    - rails
+    - postgres
+    - redis
+    networks:
+      default:
+        aliases:
+          - ai-agent.local
 
 volumes:
   storage_data:
   postgres_data:
   redis_data:
+  ai_agent_data:
+
